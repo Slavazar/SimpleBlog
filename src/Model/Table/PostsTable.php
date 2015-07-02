@@ -43,9 +43,20 @@ class PostsTable extends Table
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name');
+        
+        $validator->add('name', 'unique', [
+            'rule' => 'validateUnique',
+            'provider' => 'table',
+			'message' => 'This name has already been taken',
+        ]);
             
-        $validator
-            ->allowEmpty('slug');
+        $validator->allowEmpty('slug');
+        
+        $validator->add('slug', 'unique', [
+            'rule' => 'validateUnique',
+            'provider' => 'table',
+			'message' => 'This slug has already been taken',
+        ]);
             
         $validator
             ->allowEmpty('content');

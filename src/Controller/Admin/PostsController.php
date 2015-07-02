@@ -2,6 +2,7 @@
 namespace SimpleBlog\Controller\Admin;
 
 use SimpleBlog\Controller\AppController;
+use Cake\Utility\Inflector;
 
 /**
  * Posts Controller
@@ -47,6 +48,9 @@ class PostsController extends AppController
     {
         $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
+            if (empty($this->request->data['slug'])) {
+                $this->request->data['slug'] = Inflector::slug(Inflector::underscore($this->request->data['name']));
+            }
             $post = $this->Posts->patchEntity($post, $this->request->data);
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
@@ -72,6 +76,9 @@ class PostsController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            if (empty($this->request->data['slug'])) {
+                $this->request->data['slug'] = Inflector::slug(Inflector::underscore($this->request->data['name']));
+            }
             $post = $this->Posts->patchEntity($post, $this->request->data);
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));

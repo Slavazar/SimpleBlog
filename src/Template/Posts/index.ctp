@@ -3,15 +3,13 @@
     <tbody>
     <?php foreach ($posts as $post): ?>
         <tr>
-            <td><?= $this->Number->format($post->id) ?></td>
             <td><?= h($post->name) ?></td>
-            <td><?= h($post->slug) ?></td>
             <td><?= h($post->image) ?></td>
-            <td><?= h($post->published) ?></td>
+            <td><?= h($post->excerpt) ?></td>
             <td><?= h($post->created) ?></td>
             <td><?= h($post->modified) ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('Show'), ['action' => 'show', $post->slug]) ?>
+                <?= $this->Html->link(__('Show'), ['plugin' => 'SimpleBlog', 'controller' => 'Posts', 'action' => 'show', $post->slug]) ?>
             </td>
         </tr>
 

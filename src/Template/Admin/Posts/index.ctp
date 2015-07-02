@@ -13,8 +13,6 @@ $this->assign('title', __('Posts'));
         <tr>
             <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
-            <th><?= $this->Paginator->sort('slug') ?></th>
-            <th><?= $this->Paginator->sort('image') ?></th>
             <th><?= $this->Paginator->sort('published') ?></th>
             <th><?= $this->Paginator->sort('created') ?></th>
             <th><?= $this->Paginator->sort('modified') ?></th>
@@ -26,8 +24,6 @@ $this->assign('title', __('Posts'));
         <tr>
             <td><?= $this->Number->format($post->id) ?></td>
             <td><?= h($post->name) ?></td>
-            <td><?= h($post->slug) ?></td>
-            <td><?= h($post->image) ?></td>
             <td><?= h($post->published) ?></td>
             <td><?= h($post->created) ?></td>
             <td><?= h($post->modified) ?></td>

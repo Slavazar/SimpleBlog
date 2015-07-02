@@ -2,6 +2,7 @@
 namespace SimpleBlog\Controller;
 
 use SimpleBlog\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Posts Controller
@@ -18,6 +19,13 @@ class PostsController extends AppController
      */
     public function index()
     {
+        $this->paginate = array(
+            'Posts' => array(
+                'conditions' => array('published' => 1),
+                'limit' => 10,
+                'order' => array('Posts.created' => 'DESC'),
+            )
+        );
         $this->set('posts', $this->paginate($this->Posts));
     }
 
@@ -30,10 +38,20 @@ class PostsController extends AppController
      */
     public function show($slug = null)
     {
-        $post = $this->Posts->get($id, [
-            'contain' => []
-        ]);
+        if (empty($slug)) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+        $options = array(
+            'conditions' => array(
+                'Posts.slug' => $slug,
+                'Posts.published' => 1,
+            ),
+            'limit' => 1
+        );
+        $post = $this->Posts->find('all', $options)->first();
+        if (!$post) {
+            throw new NotFoundException(__('Invalid post'));
+        }
         $this->set('post', $post);
-        $this->set('_serialize', ['post']);
     }
 }
