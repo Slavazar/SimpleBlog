@@ -47,7 +47,7 @@ class PostsTable extends Table
         $validator->add('name', 'unique', [
             'rule' => 'validateUnique',
             'provider' => 'table',
-			'message' => 'This name has already been taken',
+            'message' => 'This name has already been taken',
         ]);
             
         $validator->allowEmpty('slug');
@@ -55,7 +55,7 @@ class PostsTable extends Table
         $validator->add('slug', 'unique', [
             'rule' => 'validateUnique',
             'provider' => 'table',
-			'message' => 'This slug has already been taken',
+            'message' => 'This slug has already been taken',
         ]);
             
         $validator
