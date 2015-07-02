@@ -1,23 +1,5 @@
-<div class="actions columns large-2 medium-3">
-    <h3><?= __('Actions') ?></h3>
-    <ul class="side-nav">
-        <li><?= $this->Html->link(__('New Post'), ['action' => 'add']) ?></li>
-    </ul>
-</div>
-<div class="posts index large-10 medium-9 columns">
+<div class="posts index large-12 medium-12 columns">
     <table cellpadding="0" cellspacing="0">
-    <thead>
-        <tr>
-            <th><?= $this->Paginator->sort('id') ?></th>
-            <th><?= $this->Paginator->sort('name') ?></th>
-            <th><?= $this->Paginator->sort('slug') ?></th>
-            <th><?= $this->Paginator->sort('image') ?></th>
-            <th><?= $this->Paginator->sort('published') ?></th>
-            <th><?= $this->Paginator->sort('created') ?></th>
-            <th><?= $this->Paginator->sort('modified') ?></th>
-            <th class="actions"><?= __('Actions') ?></th>
-        </tr>
-    </thead>
     <tbody>
     <?php foreach ($posts as $post): ?>
         <tr>
@@ -29,9 +11,7 @@
             <td><?= h($post->created) ?></td>
             <td><?= h($post->modified) ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', $post->id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $post->id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $post->id], ['confirm' => __('Are you sure you want to delete # {0}?', $post->id)]) ?>
+                <?= $this->Html->link(__('Show'), ['action' => 'show', $post->slug]) ?>
             </td>
         </tr>
 
