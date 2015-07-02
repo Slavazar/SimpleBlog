@@ -25,8 +25,8 @@ $this->assign('title', __('Posts'));
             <td><?= $this->Number->format($post->id) ?></td>
             <td><?= h($post->name) ?></td>
             <td><?= h($post->published) ?></td>
-            <td><?= h($post->created) ?></td>
-            <td><?= h($post->modified) ?></td>
+            <td><?= h($post->created->format('Y-m-d H:i:s')) ?></td>
+            <td><?= h($post->modified->format('Y-m-d H:i:s')) ?></td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $post->id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $post->id]) ?>
